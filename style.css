@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap');
+
+/* 공통 변수 설정 (라이트 모드 기준) */
+:root {
+  --red: #ea0029;
+  --wine: #7a0015;
+  --ink: #151515;
+  --cream: #f6f1e8;
+  --line: #ded7cb;
+  --card-bg: white;
+  --sub-bg: #ede6db;
+  --text-muted: #514d47;
+  --card-text: #68635b;
+}
+
+/* 🌙 다크 모드 변수 설정 */
+body.dark-mode {
+  --cream: #121212;
+  --ink: #f5f5f5;
+  --line: #333333;
+  --card-bg: #1e1e1e;
+  --sub-bg: #1a1a1a;
+  --text-muted: #aaaaaa;
+  --card-text: #cccccc;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', Arial, sans-serif;
+  color: var(--ink);
+  background: var(--cream);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* 상단 프로그레스 바 */
+.progress {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background: var(--red);
+}
+
+.wrap { max-width: 1160px; margin: auto; padding: 0 28px; }
+
+/* 헤더 & 내비게이션 */
+header { position: absolute; width: 100%; z-index: 5; color: white; }
+.nav { height: 78px; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-weight: 800; letter-spacing: .04em; font-size: 1.05rem; }
+.logo b { color: #ff536e; }
+nav { display: flex; gap: 24px; align-items: center; }
+nav a { color: white; text-decoration: none; font-size: .88rem; font-weight: 600; opacity: .85; }
+nav a:hover { opacity: 1; color: #ff9bab; }
+
+/* 다크모드 버튼 스타일 */
+#theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 4px 8px;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+#theme-toggle:hover { transform: scale(1.1); }
+
+/* 히어로 섹션 */
+.hero {
+  min-height: 690px;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  align-items: center;
+  color: white;
+  background: linear-gradient(90deg, rgba(16,13,14,.96) 5%, rgba(57,0,10,.83) 51%, rgba(110,0,20,.52)), url('사진폴더/8DCEE76C-0ADF-42C8-A48B-5A5C72E7C5C7.jpg') center 58% / cover;
+}
+.hero:before {
+  content: '';
+  position: absolute;
+  width: 760px;
+  height: 760px;
+  right: -160px;
+  top: -130px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50%;
+  box-shadow: 0 0 0 65px rgba(255,255,255,.035), 0 0 0 130px rgba(255,255,255,.025);
+}
+.hero:after {
+  content: 'TIGERS';
+  position: absolute;
+  right: -25px;
+  bottom: -64px;
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: clamp(7rem, 20vw, 17rem);
+  color: rgba(255,255,255,.07);
+  line-height: 1;
+  letter-spacing: -.06em;
+}
+.hero-content { position: relative; z-index: 1; padding-top: 95px; }
+.eyebrow { display: flex; align-items: center; gap: 10px; font-size: .75rem; font-weight: 800; letter-spacing: .16em; color: #ffa0af; }
+.eyebrow span { width: 34px; height: 2px; background: var(--red); }
+
+h1 { max-width: 800px; margin: 19px 0; font-family: 'Black Han Sans', sans-serif; font-size: clamp(3.2rem, 7.4vw, 6.8rem); line-height: 1.08; letter-spacing: -.045em; }
+h1 em { color: #ff6079; font-style: normal; }
+.hero p { max-width: 460px; font-size: 1.06rem; line-height: 1.8; color: #f2dfe2; }
+
+.button { border: 0; margin-top: 18px; padding: 15px 22px; background: var(--red); color: white; border-radius: 3px; font: 700 .92rem inherit; cursor: pointer; transition: .2s; text-decoration: none; display: inline-block; }
+.button:hover { transform: translateY(-3px); background: #ff1742; box-shadow: 0 10px 20px rgba(0,0,0,.25); }
+
+/* 일반 섹션 레이아웃 */
+section { padding: 110px 0; transition: background 0.3s; }
+.section-label { color: var(--red); font-size: .76rem; font-weight: 800; letter-spacing: .14em; }
+h2 { margin: 10px 0 36px; font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -.05em; line-height: 1.18; }
+
+/* 01 스토리 섹션 */
+.intro { display: grid; grid-template-columns: 1fr 1.15fr; gap: 75px; align-items: center; }
+.baseball { height: 330px; border-radius: 6px; position: relative; overflow: hidden; background: url('사진폴더/B38D6B05-2CEA-4AC5-80A7-2A9BBE3D5741.jpg') center / cover; }
+.baseball:after { content: '첫 직관의 설렘'; position: absolute; inset: auto 0 0; padding: 55px 20px 18px; background: linear-gradient(transparent, rgba(0,0,0,.76)); color: white; font-weight: 800; letter-spacing: -.03em; }
+.intro-text p { font-size: 1.02rem; line-height: 1.9; color: var(--text-muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 23px; }
+.chips span { border: 1px solid var(--line); padding: 8px 13px; border-radius: 99px; font-size: .84rem; font-weight: 700; background: var(--card-bg); }
+
+/* 02 선수 카드 섹션 */
+.players { background: var(--sub-bg); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.card { min-height: 272px; padding: 26px; background: var(--card-bg); border-top: 4px solid var(--ink); border-radius: 4px; transition: transform .25s, box-shadow .25s, background 0.3s; }
+.card:hover { transform: translateY(-8px); box-shadow: 0 18px 28px rgba(30,20,15,.12); }
+.number { color: var(--red); font-weight: 800; font-size: .78rem; letter-spacing: .1em; }
+.card h3 { font-size: 1.8rem; margin: 33px 0 8px; letter-spacing: -.06em; }
+.card p { color: var(--card-text); line-height: 1.65; margin: 0; }
+.player-meta { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 14px; }
+.player-meta span { padding: 5px 8px; background: var(--cream); color: var(--ink); font-size: .72rem; font-weight: 800; letter-spacing: .03em; border-radius: 2px; }
+.player-number { float: right; margin-top: -42px; color: rgba(150,150,150,0.15); font-size: 3.6rem; font-weight: 800; line-height: 1; letter-spacing: -.08em; }
+
+/* 03 명경기 타임라인 섹션 */
+.moments { background: var(--ink); color: white; }
+body.dark-mode .moments { background: #0a0a0a; }
+.moments .section-label { color: #ff8fa1; }
+.timeline { border-top: 1px solid #565151; }
+.moment { display: grid; grid-template-columns: 140px 1fr auto; gap: 25px; padding: 28px 8px; border-bottom: 1px solid #565151; align-items: center; }
+.moment strong { color: #ff6c83; font-size: .86rem; letter-spacing: .08em; }
+.moment h3 { font-size: 1.3rem; margin: 0 0 8px; }
+.moment p { margin: 0; color: #c7bfc0; line-height: 1.55; }
+.score { color: #ff8296; font-size: 1.75rem; font-weight: 800; }
+
+/* 04 갤러리 섹션 */
+.gallery { background: var(--sub-bg); }
+.gallery-grid { display: grid; grid-template-columns: 1.2fr .8fr .8fr; grid-template-rows: 230px 230px; gap: 14px; }
+.shot { overflow: hidden; border-radius: 4px; position: relative; background: #222; margin: 0; cursor: pointer; }
+.shot:first-child { grid-row: span 2; }
+.shot img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .5s ease; }
+.shot:hover img { transform: scale(1.07); }
+.shot span { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 14px 12px; background: linear-gradient(transparent, rgba(0,0,0,.76)); color: #fff; font-size: .78rem; font-weight: 700; }
+
+/* 05 야구장을 좋아하는 이유 섹션 */
+.joy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.joy { background: var(--card-bg); padding: 38px 27px; transition: background 0.3s; }
+.joy .icon { color: var(--red); font-size: 2rem; }
+.joy h3 { margin: 20px 0 10px; font-size: 1.4rem; }
+.joy p { color: var(--text-muted); line-height: 1.7; margin: 0; }
+
+/* 응원 섹션 */
+.cheer { background: linear-gradient(115deg, #251619, #4d1720); color: white; text-align: center; }
+.cheer h2 { margin-bottom: 18px; }
+#cheer-text { min-height: 29px; font-size: 1.12rem; font-weight: 600; }
+.cheer .button { background: #f3e9e6; color: #5b1320; }
+.cheer .button:hover { background: white; color: var(--red); }
+
+/* 푸터 */
+footer { padding: 26px; text-align: center; background: #101010; color: #a79f9e; font-size: .8rem; }
+
+/* 스크롤 애니메이션 클래스 */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.cards .card:nth-child(2), .joy .icon, .shot:nth-child(3) { transition-delay: .12s; }
+.cards .card:nth-child(3), .shot:nth-child(4) { transition-delay: .24s; }
+
+/* 첫 로드 시 히어로 등장 애니메이션 */
+@keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+.hero-content > * { animation: rise .7s both; } 
+.hero-content h1 { animation-delay: .12s; } 
+.hero-content p { animation-delay: .24s; } 
+.hero-content .button { animation-delay: .36s; }
+
+/* 🔍 이미지 확대 모달 스타일 */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+.modal.open img { transform: scale(1); }
+
+/* 최적화: 애니메이션 축소 모드 대응 */
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+
+/* 📱 반응형 레이아웃 (모바일) */
+@media (max-width: 700px) {
+  nav { display: none; }
+  .hero { min-height: 620px; }
+  section { padding: 76px 0; }
+  .intro { grid-template-columns: 1fr; gap: 32px; }
+  .baseball { height: 250px; }
+  .cards, .joy-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 230px 180px 180px; }
+  .shot:first-child { grid-column: span 2; grid-row: span 1; }
+  .moment { grid-template-columns: 1fr; gap: 8px; }
+  .score { display: none; }
+}
