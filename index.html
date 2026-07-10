@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="어린 시절의 직관 기억에서 시작된 KIA 타이거즈 응원 기록">
+  <title>Tigers Game Day Archive</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap');
+
+    :root { --red:#ea0029; --wine:#7a0015; --ink:#151515; --cream:#f6f1e8; --line:#ded7cb; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:'Noto Sans KR', Arial, sans-serif; color:var(--ink); background:var(--cream); }
+    .progress { position:fixed; z-index:20; top:0; left:0; width:0; height:4px; background:var(--red); }
+    .wrap { max-width:1160px; margin:auto; padding:0 28px; }
+    header { position:absolute; width:100%; z-index:5; color:white; }
+    .nav { height:78px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-weight:800; letter-spacing:.04em; font-size:1.05rem; }
+    .logo b { color:#ff536e; }
+    nav { display:flex; gap:24px; }
+    nav a { color:white; text-decoration:none; font-size:.88rem; font-weight:600; opacity:.85; }
+    nav a:hover { opacity:1; color:#ff9bab; }
+    .hero { min-height:690px; position:relative; overflow:hidden; display:grid; align-items:center; color:white; background:linear-gradient(90deg, rgba(16,13,14,.96) 5%, rgba(57,0,10,.83) 51%, rgba(110,0,20,.52)), url('사진폴더/8DCEE76C-0ADF-42C8-A48B-5A5C72E7C5C7.jpg') center 58% / cover; }
+    .hero:before { content:''; position:absolute; width:760px; height:760px; right:-160px; top:-130px; border:1px solid rgba(255,255,255,.2); border-radius:50%; box-shadow:0 0 0 65px rgba(255,255,255,.035), 0 0 0 130px rgba(255,255,255,.025); }
+    .hero:after { content:'TIGERS'; position:absolute; right:-25px; bottom:-64px; font-family:'Black Han Sans', sans-serif; font-size:clamp(7rem, 20vw, 17rem); color:rgba(255,255,255,.07); line-height:1; letter-spacing:-.06em; }
+    .hero-content { position:relative; z-index:1; padding-top:95px; }
+    .eyebrow { display:flex; align-items:center; gap:10px; font-size:.75rem; font-weight:800; letter-spacing:.16em; color:#ffa0af; }
+    .eyebrow span { width:34px; height:2px; background:var(--red); }
+    h1 { max-width:800px; margin:19px 0; font-family:'Black Han Sans', sans-serif; font-size:clamp(3.2rem, 7.4vw, 6.8rem); line-height:1.08; letter-spacing:-.045em; }
+    h1 em { color:#ff6079; font-style:normal; }
+    .hero p { max-width:460px; font-size:1.06rem; line-height:1.8; color:#f2dfe2; }
+    .button { border:0; margin-top:18px; padding:15px 22px; background:var(--red); color:white; border-radius:3px; font:700 .92rem inherit; cursor:pointer; transition:.2s; }
+    .button:hover { transform:translateY(-3px); background:#ff1742; box-shadow:0 10px 20px rgba(0,0,0,.25); }
+    section { padding:110px 0; }
+    .section-label { color:var(--red); font-size:.76rem; font-weight:800; letter-spacing:.14em; }
+    h2 { margin:10px 0 36px; font-size:clamp(2rem, 4vw, 3.5rem); letter-spacing:-.05em; line-height:1.18; }
+    .intro { display:grid; grid-template-columns:1fr 1.15fr; gap:75px; align-items:center; }
+    .baseball { height:330px; border-radius:6px; position:relative; overflow:hidden; background:url('사진폴더/B38D6B05-2CEA-4AC5-80A7-2A9BBE3D5741.jpg') center / cover; }
+    .baseball:after { content:'첫 직관의 설렘'; position:absolute; inset:auto 0 0; padding:55px 20px 18px; background:linear-gradient(transparent, rgba(0,0,0,.76)); color:white; font-weight:800; letter-spacing:-.03em; }
+    .intro-text p { font-size:1.02rem; line-height:1.9; color:#514d47; }
+    .chips { display:flex; flex-wrap:wrap; gap:9px; margin-top:23px; }
+    .chips span { border:1px solid var(--line); padding:8px 13px; border-radius:99px; font-size:.84rem; font-weight:700; }
+    .players { background:#ede6db; }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .card { min-height:272px; padding:26px; background:white; border-top:4px solid var(--ink); transition:transform .25s, box-shadow .25s; }
+    .card:hover { transform:translateY(-8px); box-shadow:0 18px 28px rgba(30,20,15,.12); }
+    .number { color:var(--red); font-weight:800; font-size:.78rem; letter-spacing:.1em; }
+    .card h3 { font-size:1.8rem; margin:33px 0 8px; letter-spacing:-.06em; }
+    .card p { color:#68635b; line-height:1.65; margin:0; }
+    .player-meta { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 14px; }
+    .player-meta span { padding:5px 8px; background:#f4f1ed; color:#3f3a34; font-size:.72rem; font-weight:800; letter-spacing:.03em; }
+    .player-number { float:right; margin-top:-42px; color:#e6e0d9; font-size:3.6rem; font-weight:800; line-height:1; letter-spacing:-.08em; }
+    .moments { background:var(--ink); color:white; }
+    .moments .section-label { color:#ff8fa1; }
+    .timeline { border-top:1px solid #565151; }
+    .moment { display:grid; grid-template-columns:140px 1fr auto; gap:25px; padding:28px 8px; border-bottom:1px solid #565151; align-items:center; }
+    .moment strong { color:#ff6c83; font-size:.86rem; letter-spacing:.08em; }
+    .moment h3 { font-size:1.3rem; margin:0 0 8px; }
+    .moment p { margin:0; color:#c7bfc0; line-height:1.55; }
+    .score { color:#ff8296; font-size:1.75rem; font-weight:800; }
+    .joy-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+    .joy { background:var(--cream); padding:38px 27px; }
+    .joy .icon { color:var(--red); font-size:2rem; }
+    .joy h3 { margin:20px 0 10px; font-size:1.4rem; }
+    .joy p { color:#5b564f; line-height:1.7; margin:0; }
+    .gallery { background:#ede6db; }
+    .gallery-grid { display:grid; grid-template-columns:1.2fr .8fr .8fr; grid-template-rows:230px 230px; gap:14px; }
+    .shot { overflow:hidden; border-radius:4px; position:relative; background:#222; }
+    .shot:first-child { grid-row:span 2; }
+    .shot img { width:100%; height:100%; display:block; object-fit:cover; transition:transform .5s ease; }
+    .shot:hover img { transform:scale(1.07); }
+    .shot span { position:absolute; bottom:0; left:0; right:0; padding:40px 14px 12px; background:linear-gradient(transparent, rgba(0,0,0,.76)); color:#fff; font-size:.78rem; font-weight:700; }
+    .cheer { background:linear-gradient(115deg, #251619, #4d1720); color:white; text-align:center; }
+    .cheer h2 { margin-bottom:18px; }
+    #cheer-text { min-height:29px; font-size:1.12rem; font-weight:600; }
+    .cheer .button { background:#f3e9e6; color:#5b1320; }
+    footer { padding:26px; text-align:center; background:#101010; color:#a79f9e; font-size:.8rem; }
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+    .cards .card:nth-child(2), .joy .icon, .shot:nth-child(3) { transition-delay:.12s; }
+    .cards .card:nth-child(3), .shot:nth-child(4) { transition-delay:.24s; }
+    @keyframes rise { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:none; } }
+    .hero-content > * { animation:rise .7s both; } .hero-content h1 { animation-delay:.12s; } .hero-content p { animation-delay:.24s; } .hero-content .button { animation-delay:.36s; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; } }
+    @media (max-width:700px) { nav { display:none; } .hero { min-height:620px; } section { padding:76px 0; } .intro { grid-template-columns:1fr; gap:32px; } .baseball { height:250px; } .cards, .joy-grid { grid-template-columns:1fr; } .gallery-grid { grid-template-columns:1fr 1fr; grid-template-rows:230px 180px 180px; } .shot:first-child { grid-column:span 2; grid-row:span 1; } .moment { grid-template-columns:1fr; gap:8px; } .score { display:none; } }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <header><div class="wrap nav"><div class="logo">TIGERS <b>GAME DAY</b></div><nav><a href="#story">MY STORY</a><a href="#players">PLAYERS</a><a href="#moments">MOMENTS</a><a href="#joy">JOY</a></nav></div></header>
+  <main>
+    <section class="hero"><div class="wrap hero-content"><div class="eyebrow"><span></span> KIA TIGERS FAN ARCHIVE</div><h1>다시, 뜨겁게.<br><em>KIA TIGERS</em></h1><p>광주-기아 챔피언스 필드의 직관 기록과, 현재 KIA 타이거즈 선수들을 정리한 개인 아카이브입니다.</p><a class="button" href="#players">선수 정보 보기</a></div></section>
+    <section id="story"><div class="wrap intro reveal"><div class="baseball" aria-label="광주 기아 챔피언스 필드 직관 사진"></div><div class="intro-text"><div class="section-label">01 / KIA TIGERS 2026</div><h2>다시, 뜨겁게.<br>V13을 향해.</h2><p>2026시즌 KIA 타이거즈의 공식 캐치프레이즈는 ‘다시, 뜨겁게’다. 홈 개막 시리즈의 ‘V13urn Again’은 13번째 우승을 향한 의지를 담았다. 이 페이지는 챔피언스 필드에서 남긴 직관 기록과 선수 정보를 함께 모은 공간이다.</p><div class="chips"><span>⚾ 광주-기아 챔피언스 필드</span><span>🏆 V13urn Again</span><span>🔥 다시, 뜨겁게</span></div></div></div></section>
+    <section class="players" id="players"><div class="wrap reveal"><div class="section-label">02 / FAVORITE PLAYERS</div><h2>내가 좋아하는 선수</h2><div class="cards"><article class="card"><div class="number">FAVORITE 01 · INFIELDER</div><div class="player-number">05</div><h3>김도영</h3><div class="player-meta"><span>내야수</span><span>3루수 · 지명타자</span></div><p>만루 홈런과 멀티 홈런으로 특히 기억에 남은 선수. 최근 공식 경기에서도 3루수와 지명타자로 선발 출전하고 있다.</p></article><article class="card"><div class="number">FAVORITE 02 · STARTING PITCHER</div><div class="player-number">54</div><h3>양현종</h3><div class="player-meta"><span>좌완 투수</span><span>선발투수</span></div><p>KIA 선발 로테이션을 이끄는 좌완 투수. 마운드에서 경기를 풀어가는 모습 때문에 꾸준히 응원하는 선수다.</p></article><article class="card"><div class="number">FAVORITE 03 · OUTFIELDER</div><div class="player-number">27</div><h3>박재현</h3><div class="player-meta"><span>외야수</span><span>좌익수 · 우익수</span></div><p>최근 공식 경기에서 좌익수와 우익수로 선발 출전했다. 앞으로의 활약을 계속 지켜보고 싶은 외야수다.</p></article></div></div></section>
+    <section class="moments" id="moments"><div class="wrap reveal"><div class="section-label">03 / UNFORGETTABLE MOMENTS</div><h2>기억에 남는 경기들</h2><div class="timeline"><article class="moment"><strong>MOMENT 01</strong><div><h3>김도영의 만루 홈런</h3><p>한 번의 스윙으로 야구장의 분위기가 완전히 뒤집히던 순간.</p></div><div class="score">GRAND SLAM</div></article><article class="moment"><strong>MOMENT 02</strong><div><h3>김도영의 멀티 홈런</h3><p>오늘은 정말 다르다는 확신이 들었던, 홈런 두 방의 짜릿함.</p></div><div class="score">2 HR</div></article><article class="moment"><strong>MOMENT 03</strong><div><h3>두산전 양의지 멀티 홈런 직관</h3><p>상대 선수의 대단한 타격까지 현장에서 온전히 마주한 인상 깊은 경기.</p></div><div class="score">LIVE</div></article></div></div></section>
+    <section class="gallery" id="gallery"><div class="wrap reveal"><div class="section-label">04 / GAME DAY GALLERY</div><h2>티켓 한 장에 담긴<br>직관의 순간들</h2><div class="gallery-grid"><figure class="shot"><img src="사진폴더/BE5DFCB5-AF07-42F5-829F-DEE434D92E37.jpg" alt="KIA 타이거즈 티켓과 응원 카드"><span>두산전, 티켓과 함께 남긴 기록</span></figure><figure class="shot"><img src="사진폴더/C2631E12-5DBA-4B47-A1AC-C4F074F770CD.jpg" alt="야구장과 KIA 티켓"><span>야구장을 향한 시선</span></figure><figure class="shot"><img src="사진폴더/E2C8D1EB-C861-4CC3-8286-3487A86CFD99.jpg" alt="KIA 응원 팔찌와 야구장"><span>응원 준비 완료</span></figure><figure class="shot"><img src="사진폴더/F426095E-3169-4FB1-904D-D36220BDB24D.jpg" alt="KIA 타이거즈 티켓과 선수 카드"><span>기억하고 싶은 한 경기</span></figure><figure class="shot"><img src="사진폴더/8E16DB67-8CBF-4AD7-8EF0-A76EB5D4B638.jpg" alt="KIA 타이거즈 티켓과 양현종 카드"><span>경기 시작 전의 설렘</span></figure></div></div></section>
+    <section id="joy"><div class="wrap reveal"><div class="section-label">05 / THE JOY OF BASEBALL</div><h2>내가 야구장을 좋아하는 이유</h2><div class="joy-grid"><article class="joy"><div class="icon">🍗</div><h3>음식</h3><p>경기 시작 전부터 즐거운 야구장만의 메뉴와 분위기. 관람의 시작을 완성한다.</p></article><article class="joy"><div class="icon">🎵</div><h3>응원가</h3><p>수많은 사람과 같은 노래를 부르는 순간, 낯선 사람도 한 팀이 된다.</p></article><article class="joy"><div class="icon">🏆</div><h3>승리의 쾌감</h3><p>마지막 아웃카운트가 잡히는 순간의 환호. 그래서 다음 경기를 다시 기다린다.</p></article></div></div></section>
+    <section class="cheer"><div class="wrap"><div class="section-label" style="color:#e8afb8">TODAY'S CHEER</div><h2>오늘의 KIA 응원 한마디</h2><p id="cheer-text" aria-live="polite">버튼을 눌러 응원 문구를 확인하세요.</p><button class="button" id="cheer-button">응원 한마디 보기</button></div></section>
+  </main>
+  <footer>© 2026 Tigers Game Day Archive · Made for the love of baseball.</footer>
+  <script>
+    const cheers = ['최강 KIA, 오늘도 끝까지 함께 갑니다!', '호랑이의 포효는 9회말에도 멈추지 않는다.', '한 점씩, 한 타석씩. 승리를 향해!', '오늘의 함성도 광주에서 가장 뜨겁게!', '승리의 순간까지, KIA 타이거즈 파이팅!'];
+    document.getElementById('cheer-button').addEventListener('click', () => { document.getElementById('cheer-text').textContent = cheers[Math.floor(Math.random() * cheers.length)]; });
+    window.addEventListener('scroll', () => { const max = document.documentElement.scrollHeight - innerHeight; document.getElementById('progress').style.width = `${max ? scrollY / max * 100 : 0}%`; });
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }), { threshold: .14 });
+    document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+  </script>
+</body>
+</html>
