@@ -36,7 +36,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
 
-// 🌙 4. 다크 모드 토글 기능 추가
+// 🌙 4. 다크 모드 토글 기능
 const themeToggle = document.getElementById('theme-toggle');
 themeToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
@@ -48,7 +48,7 @@ themeToggle.addEventListener('click', () => {
   }
 });
 
-// 🔍 5. 갤러리 이미지 클릭 시 모달 확대 기능 추가
+// 🔍 5. 갤러리 이미지 클릭 시 모달 확대 기능
 const modal = document.getElementById('image-modal');
 const modalImg = document.getElementById('modal-img');
 const galleryImages = document.querySelectorAll('.shot img');
