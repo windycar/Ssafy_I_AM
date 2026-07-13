@@ -1,15 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap');
-/* style.css 에서 .hero 부분을 찾아서 background-attachment: fixed; 를 추가하세요 */
-.hero { 
-  min-height: 690px; 
-  position: relative; 
-  overflow: hidden; 
-  display: grid; 
-  align-items: center; 
-  color: white; 
-  /* 기존 배경 코드 맨 끝에 fixed 만 추가하면 끝! */
-  background: linear-gradient(90deg, rgba(16,13,14,.96) 5%, rgba(57,0,10,.83) 51%, rgba(110,0,20,.52)), url('8DCEE76C-0ADF-42C8-A48B-5A5C72E7C5C7.jpg') center 58% / cover fixed; 
-}
 /* 공통 변수 설정 (라이트 모드 기준) */
 :root {
   --red: #ea0029;
@@ -173,6 +162,9 @@ body.dark-mode .moments { background: #0a0a0a; }
 .joy .icon { color: var(--red); font-size: 2rem; }
 .joy h3 { margin: 20px 0 10px; font-size: 1.4rem; }
 .joy p { color: var(--text-muted); line-height: 1.7; margin: 0; }
+.joy-media { width: 100%; height: 185px; display: block; margin: 18px 0 0; border-radius: 4px; background: #161616; object-fit: cover; }
+.joy video { outline: 1px solid rgba(0,0,0,.12); }
+.media-note { display: block; margin-top: 8px; color: var(--card-text); font-size: .76rem; }
 
 /* 응원 섹션 */
 .cheer { background: linear-gradient(115deg, #251619, #4d1720); color: white; text-align: center; }
@@ -230,6 +222,7 @@ footer { padding: 26px; text-align: center; background: #101010; color: #a79f9e;
   .intro { grid-template-columns: 1fr; gap: 32px; }
   .baseball { height: 250px; }
   .cards, .joy-grid { grid-template-columns: 1fr; }
+  .joy-media { height: 230px; }
   .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 230px 180px 180px; }
   .shot:first-child { grid-column: span 2; grid-row: span 1; }
   .moment { grid-template-columns: 1fr; gap: 8px; }
