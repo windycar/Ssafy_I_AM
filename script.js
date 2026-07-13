@@ -127,3 +127,109 @@ guestbookForm.addEventListener('submit', (event) => {
 });
 
 renderGuestbook();
+
+// 7. 다이나믹 타격 미니 게임 기능
+const pitchBtn = document.getElementById('pitch-btn');
+const hitBtn = document.getElementById('hit-btn');
+const ball = document.getElementById('baseball');
+const bat = document.getElementById('bat');
+const strikeZone = document.getElementById('strike-zone');
+const gameMessage = document.getElementById('game-message');
+
+let isPitching = false;
+let pitchTimeout;
+let resetTimeout;
+
+pitchBtn.addEventListener('click', () => {
+  if (isPitching) return;
+  isPitching = true;
+  
+  gameMessage.textContent = '투구했습니다!';
+  gameMessage.style.color = 'white';
+  pitchBtn.disabled = true;
+  hitBtn.disabled = false;
+  
+  // 공 위치 초기화 및 던지기 애니메이션 (왼쪽에서 오른쪽으로)
+  ball.style.transition = 'none';
+  ball.style.left = '-40px';
+  ball.style.top = '50%';
+  ball.style.transform = 'translateY(-50%) scale(1)';
+  
+  setTimeout(() => {
+    ball.style.transition = 'left 1s cubic-bezier(0.1, 0.4, 0.8, 1)'; // 날아오는 속도 조절
+    ball.style.left = 'calc(100% + 40px)'; 
+  }, 50);
+
+  // 1.2초 후 헛스윙 처리 (공이 밖으로 나간 후)
+  pitchTimeout = setTimeout(() => {
+    if (isPitching) {
+      gameMessage.textContent = '스트라이크! (루킹)';
+      endTurn();
+    }
+  }, 1200);
+});
+
+hitBtn.addEventListener('click', () => {
+  if (!isPitching) return;
+  
+  // 방망이 스윙 애니메이션 실행
+  bat.classList.add('swing');
+  setTimeout(() => bat.classList.remove('swing'), 200);
+  
+  // 충돌(타이밍) 판정 로직
+  const ballRect = ball.getBoundingClientRect();
+  const zoneRect = strikeZone.getBoundingClientRect();
+  
+  // 공과 스트라이크 존의 중심 x좌표 계산
+  const ballCenter = ballRect.left + (ballRect.width / 2);
+  const zoneCenter = zoneRect.left + (zoneRect.width / 2);
+  
+  // 타격 판정 범위 설정 (존을 기준으로 약간의 여유 허용)
+  if (ballCenter > zoneRect.left - 20 && ballCenter < zoneRect.right + 20) {
+    clearTimeout(pitchTimeout); // 루킹 타이머 취소
+    ball.style.transition = 'none'; // 타격 순간 공 멈춤
+    
+    // 중심과의 거리에 따라 타격 결과 결정 (정확히 가운데 맞출수록 홈런)
+    const distance = Math.abs(ballCenter - zoneCenter);
+    
+    if (distance < 12) {
+      gameMessage.textContent = '🔥 홈런!!! 🔥';
+      gameMessage.style.color = '#ff6c83';
+      // 홈런 연출: 공이 하늘로 날아가는 효과
+      ball.style.transition = 'all 0.5s ease-out';
+      ball.style.top = '-50px';
+      ball.style.transform = 'scale(2)';
+    } else if (distance < 25) {
+      gameMessage.textContent = '3루타! ⚾⚾⚾';
+    } else if (distance < 40) {
+      gameMessage.textContent = '2루타! ⚾⚾';
+    } else {
+      gameMessage.textContent = '1루타! ⚾';
+    }
+    
+    endTurn();
+  } else {
+    // 타이밍을 못 맞췄을 때
+    clearTimeout(pitchTimeout);
+    gameMessage.textContent = '헛스윙! 스트라이크!';
+    endTurn();
+  }
+});
+
+function endTurn() {
+  isPitching = false;
+  hitBtn.disabled = true;
+  
+  clearTimeout(resetTimeout);
+  resetTimeout = setTimeout(() => {
+    pitchBtn.disabled = false;
+    gameMessage.textContent = '대기 중...';
+    gameMessage.style.color = 'white';
+    
+    // 공 위치 리셋
+    ball.style.transition = 'none';
+    ball.style.left = '-40px';
+    ball.style.top = '50%';
+    ball.style.transform = 'translateY(-50%)';
+  }, 2000); // 2초 후 재시작 가능
+}
