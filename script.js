@@ -69,3 +69,61 @@ modal.addEventListener('click', () => {
     modal.style.display = 'none';
   }, 300); // 애니메이션 시간 대기 후 숨김
 });
+
+// 6. 팬 방명록 기능 (브라우저에 저장)
+const guestbookForm = document.getElementById('guestbook-form');
+const guestbookList = document.getElementById('guestbook-list');
+const guestbookEmpty = document.getElementById('guestbook-empty');
+const guestbookKey = 'kia-tigers-fan-wall';
+
+function getGuestbookMessages() {
+  try {
+    return JSON.parse(localStorage.getItem(guestbookKey)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function renderGuestbook() {
+  const messages = getGuestbookMessages();
+  guestbookList.innerHTML = '';
+  guestbookEmpty.hidden = messages.length > 0;
+
+  messages.forEach((message, index) => {
+    const item = document.createElement('article');
+    item.className = 'guestbook-item';
+    const name = document.createElement('strong');
+    name.textContent = message.name;
+    const content = document.createElement('p');
+    content.textContent = message.content;
+    const deleteButton = document.createElement('button');
+    deleteButton.type = 'button';
+    deleteButton.className = 'guestbook-delete';
+    deleteButton.textContent = '삭제';
+    deleteButton.setAttribute('aria-label', `${message.name} 메시지 삭제`);
+    deleteButton.addEventListener('click', () => {
+      const updatedMessages = getGuestbookMessages();
+      updatedMessages.splice(index, 1);
+      localStorage.setItem(guestbookKey, JSON.stringify(updatedMessages));
+      renderGuestbook();
+    });
+    item.append(name, content, deleteButton);
+    guestbookList.append(item);
+  });
+}
+
+guestbookForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const formData = new FormData(guestbookForm);
+  const name = formData.get('name').trim();
+  const content = formData.get('message').trim();
+  if (!name || !content) return;
+
+  const messages = getGuestbookMessages();
+  messages.unshift({ name, content });
+  localStorage.setItem(guestbookKey, JSON.stringify(messages.slice(0, 10)));
+  guestbookForm.reset();
+  renderGuestbook();
+});
+
+renderGuestbook();

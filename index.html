@@ -156,22 +156,47 @@
             <div class="icon">🎵</div>
             <h3>응원가</h3>
             <p>수많은 사람과 같은 노래를 부르는 순간, 낯선 사람도 한 팀이 된다.</p>
-            <video class="joy-media" controls preload="metadata" playsinline aria-label="야구장 응원가 영상">
-              <source src="내가야구장을 좋아하는이유/응원가.MOV" type="video/quicktime">
+            <video class="joy-media" controls preload="metadata" playsinline poster="images/D434992F-D455-44AA-ACDA-D4B1A2912E10.jpg" aria-label="야구장 응원가 영상">
+              <source src="내가야구장을 좋아하는이유/응원가.MOV">
               이 브라우저는 동영상 재생을 지원하지 않습니다.
             </video>
             <span class="media-note">직관 현장 응원가 영상</span>
+            <a class="video-fallback" href="내가야구장을 좋아하는이유/응원가.MOV" target="_blank" rel="noopener">영상 직접 열기 ↗</a>
           </article>
           <article class="joy">
             <div class="icon">🏆</div>
             <h3>승리의 쾌감</h3>
             <p>마지막 아웃카운트가 잡히는 순간의 환호. 그래서 다음 경기를 다시 기다린다.</p>
-            <video class="joy-media" controls preload="metadata" playsinline aria-label="승리의 쾌감 영상">
-              <source src="내가야구장을 좋아하는이유/승리의쾌감.MOV" type="video/quicktime">
+            <video class="joy-media" controls preload="metadata" playsinline poster="images/8DCEE76C-0ADF-42C8-A48B-5A5C72E7C5C7.jpg" aria-label="승리의 쾌감 영상">
+              <source src="내가야구장을 좋아하는이유/승리의쾌감.MOV">
               이 브라우저는 동영상 재생을 지원하지 않습니다.
             </video>
             <span class="media-note">직관 현장 승리 영상</span>
+            <a class="video-fallback" href="내가야구장을 좋아하는이유/승리의쾌감.MOV" target="_blank" rel="noopener">영상 직접 열기 ↗</a>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="guestbook" id="guestbook">
+      <div class="wrap reveal">
+        <div class="section-label">06 / TIGERS FAN WALL</div>
+        <div class="guestbook-layout">
+          <div class="guestbook-copy">
+            <h2>한마디 남기기</h2>
+            <p>같이 응원하는 팬에게 남기는 짧은 메시지입니다. 작성한 메시지는 이 브라우저에 저장되어 새로고침 후에도 유지됩니다.</p>
+          </div>
+          <div>
+            <form class="guestbook-form" id="guestbook-form">
+              <label class="sr-only" for="guest-name">닉네임</label>
+              <input id="guest-name" name="name" type="text" maxlength="16" placeholder="닉네임" required>
+              <label class="sr-only" for="guest-message">메시지</label>
+              <textarea id="guest-message" name="message" maxlength="120" placeholder="KIA 타이거즈에게 남길 한마디를 적어주세요." required></textarea>
+              <button class="button" type="submit">메시지 남기기</button>
+            </form>
+            <div class="guestbook-list" id="guestbook-list" aria-live="polite"></div>
+            <p class="guestbook-empty" id="guestbook-empty">첫 번째 응원 메시지를 남겨주세요.</p>
+          </div>
         </div>
       </div>
     </section>
