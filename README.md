@@ -1,6 +1,8 @@
 # ⚾ KIA TIGERS GAME DAY ARCHIVE
 > **나의 직관 기록과 KIA 타이거즈를 향한 팬심을 담은 웹 아카이브**
 
+> 🌐 **배포 사이트:** [https://ssafyiam.netlify.app/](https://ssafyiam.netlify.app/)
+
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
